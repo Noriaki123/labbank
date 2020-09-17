@@ -7,7 +7,6 @@ namespace lab1
         static void Main(string[] args)
         {
             DateTime now = DateTime.Now;
-            int age = 0;
             Console.WriteLine("Как тебя зовут?");
             string name = Console.ReadLine();
             Console.WriteLine("Введи номер дня своего рождения");
@@ -40,41 +39,17 @@ namespace lab1
                         }
                         else
                         {
-                            if (d > Convert.ToInt32(now.ToString("dd")) && m >= Convert.ToInt32(now.ToString("MM")))
-                            {
-                                age = Convert.ToInt32(now.ToString("yyyy")) - y - 1;
-                            }
-                            else
-                            {
-                                age = Convert.ToInt32(now.ToString("yyyy")) - y;
-                            }
-                            Console.WriteLine($"Привет,{name}.Ваш возраст равен {age} лет.Приятно познакомиться.");
+                            DetAge(d, m, y, name);
                         }
                     }
                     else
                     {
-                        if (d > Convert.ToInt32(now.ToString("dd")) && m >= Convert.ToInt32(now.ToString("MM")))
-                        {
-                            age = Convert.ToInt32(now.ToString("yyyy")) - y - 1;
-                        }
-                        else
-                        {
-                            age = Convert.ToInt32(now.ToString("yyyy")) - y;
-                        }
-                        Console.WriteLine($"Привет,{name}.Ваш возраст равен {age} лет.Приятно познакомиться.");
+                        DetAge(d, m, y, name);
                     }
                 }
                 else
                 {
-                    if (d > Convert.ToInt32(now.ToString("dd")) && m >= Convert.ToInt32(now.ToString("MM")))
-                    {
-                        age = Convert.ToInt32(now.ToString("yyyy")) - y - 1;
-                    }
-                    else
-                    {
-                        age = Convert.ToInt32(now.ToString("yyyy")) - y;
-                    }
-                    Console.WriteLine($"Привет,{name}.Ваш возраст равен {age} лет.Приятно познакомиться.");
+                    DetAge(d, m, y, name);
                 }
             }
             else
@@ -82,6 +57,24 @@ namespace lab1
                 Console.WriteLine("Вы ввели неверные данные");
             }
             Console.ReadKey();
+        }
+        static void DetAge(int d, int m, int y, string name)
+        {
+            DateTime now = DateTime.Now;
+            int age = 0;
+            if (m > Convert.ToInt32(now.ToString("MM")))
+            {
+                age = Convert.ToInt32(now.ToString("yyyy")) - y - 1;
+            }
+            else if (d > Convert.ToInt32(now.ToString("dd")) && m == Convert.ToInt32(now.ToString("MM")))
+            {
+                age = Convert.ToInt32(now.ToString("yyyy")) - y - 1;
+            }
+            else
+            {
+                age = Convert.ToInt32(now.ToString("yyyy")) - y;
+            }
+            Console.WriteLine($"Привет,{name}.Ваш возраст равен {age} лет.Приятно познакомиться.");
         }
     }
 }
